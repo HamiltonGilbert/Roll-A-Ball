@@ -7,7 +7,7 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
 
-    //public float speed = 0;
+    //public float jumpHeight = 0;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
 
@@ -31,20 +31,15 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    //void OnMove(InputValue movementValue)
+    //void OnJump(InputValue movementValue)
     //{
-    //    Vector2 moveVector = movementValue.Get<Vector2>();
-    //    moveX = moveVector.x;
-    //    moveY = moveVector.y;
+        //Vector3 movement = new Vector3(0, 1, 0);
+        //rb.AddForce(movement * jumpHeight);
     //}
 
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
-        if (count >= 13)
-        {
-            winTextObject.SetActive(true);
-        }
+        countText.text = "Score: " + count.ToString();
     }
 
     //void FixedUpdate()
@@ -55,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Pickup"))
+        if (other.gameObject.CompareTag("Pickup") && ! winTextObject.activeSelf)
         {
             other.gameObject.SetActive(false);
             count++;
